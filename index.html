@@ -153,7 +153,7 @@ video{width:100%}
 
 <section id="surprise" style="display:none;">
   <div class="video-box" id="video">
-    <video id="loveVideo" controls autoplay muted>
+    <video id="loveVideo" controls>
       <source src="video/love.mp4" type="video/mp4">
     </video>
   </div>
@@ -163,6 +163,21 @@ video{width:100%}
 
   <div id="typingLetter"></div>
 </section>
+
+<script>
+function showSurprise(){
+  document.getElementById('surprise').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('video').classList.add('show');
+    document.getElementById('hubbyCaption').style.display='block';
+
+    // Autoplay video with sound after user clicks "Click for a Surprise"
+    const video = document.getElementById('loveVideo');
+    video.play().catch(()=>console.log("Autoplay blocked until user interacts"));
+  },200);
+}
+</script>
+
 
 
 <!-- Love Popup -->
