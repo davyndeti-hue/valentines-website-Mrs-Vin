@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Valentine’s Day Mrs Vin ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+  background-size:400% 400%;
+  animation:gradientBG 20s ease infinite;
+  overflow-x:hidden;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+}
+.card{
+  background:rgba(255,255,255,.9);
+  border-radius:20px;
+  padding:40px 30px;
+  max-width:700px;
+  box-shadow:0 0 50px rgba(255,77,109,.6);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
+}
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:4rem;
+  color:#b3003b;
+}
+section{padding:80px 20px;text-align:center}
+.message{
+  max-width:800px;
+  margin:auto;
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  line-height:1.8;
+}
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 30px;
+  background:#b3003b;
+  color:#fff;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* Video */
+.video-box{
+  max-width:800px;
+  margin:30px auto;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 0 50px rgba(255,77,109,.6);
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s ease;
+}
+.video-box.show{opacity:1;transform:translateY(0)}
+video{width:100%}
+
+/* From Hubby glowing */
+#hubbyCaption{
+  display:none;
+  font-size:1.4rem;
+  color:#b3003b;
+  margin-top:20px;
+  cursor:pointer;
+  animation:glow 1.5s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 5px #ff4d6d}
+  to{text-shadow:0 0 20px #ff4d6d,0 0 30px #ff99aa}
+}
+
+/* Love popup */
+#lovePopup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 0 40px rgba(255,77,109,.7);
+  display:none;
+  max-width:320px;
+  z-index:999;
+}
+
+/* Typing letter */
+#typingLetter{
+  margin-top:20px;
+  color:#b3003b;
+  font-size:1.1rem;
+  white-space:pre-line;
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:rise 6s linear infinite;
+}
+@keyframes rise{
+  to{transform:translateY(-110vh);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="card">
+<img src="https://i.im.ge/2026/01/26/GJ1uQq.kk.th.jpeg" width="200">
+<h1>Happy Valentine’s Day Mrs Vin</h1>
+<p>You make my world brighter just by being in it ❤️</p>
+</div>
+</header>
+
+<section>
+<h3>My Message to You</h3>
+<div class="message">
+<p>You are my best friend, my peace, my forever.....From the moment you came into my life everything became brighter...ur smile is my sunshine, your laughter my favorite song n ur love my greatest treasure.....every day with you feels like a dream I never want to wake from.....Thank you for being my partner, my best friend n my heart’s home.....I love you more than words could ever say today and always❤️❤️❤️💋</p>
+<div class="btn" onclick="showSurprise()">Click for a Surprise 💝</div>
+</div>
+</section>
+
+<section id="surprise" style="display:none;">
+<div class="video-box" id="video">
+<video id="loveVideo" controls autoplay>
+<source src="video/love.mp4" type="video/mp4">
+</video>
+</div>
+
+<p id="hubbyCaption" onclick="playHubbyAudio()">💕 From Hubby — Click Me 💕</p>
+
+<div id="typingLetter"></div>
+</section>
+
+<!-- Love Popup -->
+<div id="lovePopup">
+<h3>💌 From Hubby</h3>
+<p>You are my heart, my happiness, my forever love.........My Wife ❤️</p>
+<button onclick="closePopup()">Close</button>
+</div>
+
+<footer style="padding:30px;text-align:center;color:white;background:rgba(0,0,0,.3)">
+Made with ❤️ just for you Mrs Vin❤️
+</footer>
+
+<audio id="romanticAudio" src="audio/romantic.mp3"></audio>
+
+<script>
+function showSurprise(){
+  document.getElementById('surprise').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('video').classList.add('show');
+    document.getElementById('hubbyCaption').style.display='block';
+  },200);
+}
+
+/* Play music ONLY when From Hubby clicked */
+function playHubbyAudio(){
+  const audio=document.getElementById('romanticAudio');
+  audio.currentTime=0;
+  audio.volume=0;
+  audio.play().catch(()=>{});
+
+  let vol=0;
+  const fade=setInterval(()=>{
+    if(vol<1){vol+=0.05;audio.volume=vol;}
+    else clearInterval(fade);
+  },200);
+
+  showPopup();
+  typeLetter();
+}
+
+/* Popup */
+function showPopup(){
+  document.getElementById('lovePopup').style.display='block';
+}
+function closePopup(){
+  document.getElementById('lovePopup').style.display='none';
+}
+
+/* Typing love letter */
+function typeLetter(){
+  const text="My love ❤️\nEvery beat of my heart belongs to you...\nYou are my forever and always.\nLove -Hubby 💕";
+  let i=0;
+  const speed=50;
+  const el=document.getElementById('typingLetter');
+  el.innerHTML="";
+  const timer=setInterval(()=>{
+    if(i<text.length){
+      el.innerHTML+=text.charAt(i);
+      i++;
+    }else clearInterval(timer);
+  },speed);
+}
+
+/* Floating hearts */
+const hearts=['❤️','💖','💕','💘'];
+setInterval(()=>{
+  const h=document.createElement('div');
+  h.className='heart';
+  h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left=Math.random()*100+'vw';
+  h.style.animationDuration=4+Math.random()*3+'s';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},400);
+</script>
+
+</body>
+</html>
