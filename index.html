@@ -166,20 +166,24 @@ video{width:100%}
 
 <script>
 function showSurprise(){
-  document.getElementById('surprise').style.display='block';
-  setTimeout(()=>{
-    document.getElementById('video').classList.add('show');
-    document.getElementById('hubbyCaption').style.display='block';
+  document.getElementById('surprise').style.display = 'block';
 
-    // Autoplay video with sound after user clicks "Click for a Surprise"
-    const video = document.getElementById('loveVideo');
-    video.play().catch(()=>console.log("Autoplay blocked until user interacts"));
-  },200);
+  const video = document.getElementById('loveVideo');
+
+  video.muted = false;     // force sound ON
+  video.currentTime = 0;  // start from beginning
+
+  // play video immediately after user click (allowed)
+  video.play().catch(err => {
+    console.log("Autoplay blocked:", err);
+  });
+
+  setTimeout(() => {
+    document.getElementById('video').classList.add('show');
+    document.getElementById('hubbyCaption').style.display = 'block';
+  }, 200);
 }
 </script>
-
-
-
 <!-- Love Popup -->
 <div id="lovePopup">
 <h3>💌 From Hubby</h3>
@@ -196,14 +200,6 @@ Made with ❤️ just for you Mrs Vin❤️
 <audio id="hubbyClick" src="audio/hubby-click.mp3"></audio>
 
 <script>
-function showSurprise(){
-  document.getElementById('surprise').style.display='block';
-  setTimeout(()=>{
-    document.getElementById('video').classList.add('show');
-    document.getElementById('hubbyCaption').style.display='block';
-  },200);
-}
-
 /* Play audio ONLY when From Hubby clicked */
 function playHubbyAudio(){
   // Play click sound
