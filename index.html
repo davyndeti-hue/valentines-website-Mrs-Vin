@@ -202,21 +202,32 @@ Made with ❤️ just for you Mrs Vin❤️
 <script>
 /* Play audio ONLY when From Hubby clicked */
 function playHubbyAudio(){
-  // Play click sound
+  // 🔴 PAUSE VIDEO when Hubby is clicked
+  const video = document.getElementById('loveVideo');
+  if (video && !video.paused) {
+    video.pause();
+  }
+
+  // ▶️ Play click sound
   const clickAudio = document.getElementById('hubbyClick');
   clickAudio.currentTime = 0;
   clickAudio.play().catch(()=>{});
 
-  // Play romantic audio
+  // 🎵 Play romantic audio with fade-in
   const audio = document.getElementById('romanticAudio');
   audio.currentTime = 0;
   audio.volume = 0;
   audio.play().catch(()=>{});
+
   let vol = 0;
   const fade = setInterval(()=>{
-    if(vol<1){ vol += 0.05; audio.volume = vol; }
-    else clearInterval(fade);
-  },200);
+    if (vol < 1) {
+      vol += 0.05;
+      audio.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
 
   showPopup();
   typeLetter();
