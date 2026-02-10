@@ -158,9 +158,7 @@ video{width:100%}
     </video>
   </div>
 
-  <!-- From Hubby clickable, after video -->
   <p id="hubbyCaption" onclick="playHubbyAudio()">💕 From Hubby — Click Me After the Video 💕</p>
-
   <div id="typingLetter"></div>
 </section>
 
@@ -169,14 +167,8 @@ function showSurprise(){
   document.getElementById('surprise').style.display = 'block';
 
   const video = document.getElementById('loveVideo');
-
-  video.muted = false;     // force sound ON
-  video.currentTime = 0;  // start from beginning
-
-  // play video immediately after user click (allowed)
-  video.play().catch(err => {
-    console.log("Autoplay blocked:", err);
-  });
+  video.currentTime = 0;
+  video.play().catch(()=>{});
 
   setTimeout(() => {
     document.getElementById('video').classList.add('show');
@@ -184,6 +176,7 @@ function showSurprise(){
   }, 200);
 }
 </script>
+
 <!-- Love Popup -->
 <div id="lovePopup">
 <h3>💌 From Hubby</h3>
@@ -195,25 +188,20 @@ function showSurprise(){
 Made with ❤️ just for you Mrs Vin❤️
 </footer>
 
-<!-- Audio -->
 <audio id="romanticAudio" src="audio/romantic.mp3"></audio>
 <audio id="hubbyClick" src="audio/hubby-click.mp3"></audio>
 
 <script>
-/* Play audio ONLY when From Hubby clicked */
 function playHubbyAudio(){
-  // 🔴 PAUSE VIDEO when Hubby is clicked
   const video = document.getElementById('loveVideo');
-  if (video && !video.paused) {
+  if(video && !video.paused){
     video.pause();
   }
 
-  // ▶️ Play click sound
   const clickAudio = document.getElementById('hubbyClick');
   clickAudio.currentTime = 0;
   clickAudio.play().catch(()=>{});
 
-  // 🎵 Play romantic audio with fade-in
   const audio = document.getElementById('romanticAudio');
   audio.currentTime = 0;
   audio.volume = 0;
@@ -221,40 +209,30 @@ function playHubbyAudio(){
 
   let vol = 0;
   const fade = setInterval(()=>{
-    if (vol < 1) {
+    if(vol < 1){
       vol += 0.05;
       audio.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
+    } else clearInterval(fade);
+  },200);
 
   showPopup();
   typeLetter();
 }
 
-/* Popup */
 function showPopup(){
-  document.getElementById('lovePopup').style.display='block';
+  document.getElementById('lovePopup').style.display = 'block';
 }
+
+/* ✅ CHANGED PART: video does NOT resume */
 function closePopup(){
-  document.getElementById('lovePopup').style.display='none';
-
-  // 🔄 Resume video if it exists
-  const video = document.getElementById('loveVideo');
-  if (video && video.paused) {
-    video.play().catch(err => {
-      console.log("Video resume blocked:", err);
-    });
-  }
+  document.getElementById('lovePopup').style.display = 'none';
 }
+</script>
 
-
-/* Typing love letter */
+<script>
 function typeLetter(){
   const text="My love ❤️\nEvery beat of my heart belongs to you...\nYou are my forever and always.\nLove -Hubby 💕";
   let i=0;
-  const speed=50;
   const el=document.getElementById('typingLetter');
   el.innerHTML="";
   const timer=setInterval(()=>{
@@ -262,10 +240,9 @@ function typeLetter(){
       el.innerHTML+=text.charAt(i);
       i++;
     }else clearInterval(timer);
-  },speed);
+  },50);
 }
 
-/* Floating hearts */
 const hearts=['❤️','💖','💕','💘'];
 setInterval(()=>{
   const h=document.createElement('div');
