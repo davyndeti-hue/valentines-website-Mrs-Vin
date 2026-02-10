@@ -239,7 +239,16 @@ function showPopup(){
 }
 function closePopup(){
   document.getElementById('lovePopup').style.display='none';
+
+  // 🔄 Resume video if it exists
+  const video = document.getElementById('loveVideo');
+  if (video && video.paused) {
+    video.play().catch(err => {
+      console.log("Video resume blocked:", err);
+    });
+  }
 }
+
 
 /* Typing love letter */
 function typeLetter(){
