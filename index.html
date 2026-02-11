@@ -158,7 +158,6 @@ video{width:100%}
     </video>
   </div>
 
-  <!-- ✅ ADDED PART -->
   <p id="afterVideo" style="display:none;font-size:1.6rem;color:#b3003b;margin-top:30px;">
     I saved the most beautiful part of my heart just for you Jayvin… 💖
   </p>
@@ -169,7 +168,11 @@ video{width:100%}
 
 <script>
 function showSurprise(){
-  document.getElementById('surprise').style.display = 'block';
+  const section = document.getElementById('surprise');
+  section.style.display = 'block';
+
+  /* ✅ AUTO SCROLL TO VIDEO */
+  section.scrollIntoView({ behavior: 'smooth' });
 
   const video = document.getElementById('loveVideo');
   video.currentTime = 0;
@@ -182,7 +185,6 @@ function showSurprise(){
 }
 </script>
 
-<!-- Love Popup -->
 <div id="lovePopup">
 <h3>💌 From Hubby</h3>
 <p>You are my heart, my happiness, my forever love.........My Wife ❤️</p>
@@ -199,9 +201,7 @@ Made with ❤️ just for you Mrs Vin❤️
 <script>
 function playHubbyAudio(){
   const video = document.getElementById('loveVideo');
-  if(video && !video.paused){
-    video.pause();
-  }
+  if(video && !video.paused) video.pause();
 
   document.getElementById('hubbyClick').play().catch(()=>{});
 
@@ -218,20 +218,14 @@ function playHubbyAudio(){
     } else clearInterval(fade);
   },200);
 
-  showPopup();
+  document.getElementById('lovePopup').style.display='block';
   typeLetter();
 }
 
-function showPopup(){
-  document.getElementById('lovePopup').style.display = 'block';
-}
-
 function closePopup(){
-  document.getElementById('lovePopup').style.display = 'none';
+  document.getElementById('lovePopup').style.display='none';
 }
-</script>
 
-<script>
 function typeLetter(){
   const text="My love ❤️\nEvery beat of my heart belongs to you...\nYou are my forever and always.\nLove -Hubby 💕";
   let i=0;
@@ -239,13 +233,12 @@ function typeLetter(){
   el.innerHTML="";
   const timer=setInterval(()=>{
     if(i<text.length){
-      el.innerHTML+=text.charAt(i);
-      i++;
-    }else clearInterval(timer);
+      el.innerHTML+=text.charAt(i++);
+    } else clearInterval(timer);
   },50);
 }
 
-const hearts = ['❤️','Forever','My Wife','Always','💕'];
+const hearts=['❤️','Forever','My Wife','Always','💕'];
 setInterval(()=>{
   const h=document.createElement('div');
   h.className='heart';
@@ -255,13 +248,9 @@ setInterval(()=>{
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),7000);
 },400);
-</script>
 
-<!-- ✅ ADDED SCRIPT -->
-<script>
-const loveVideo = document.getElementById('loveVideo');
-loveVideo.addEventListener('ended', () => {
-  document.getElementById('afterVideo').style.display = 'block';
+document.getElementById('loveVideo').addEventListener('ended',()=>{
+  document.getElementById('afterVideo').style.display='block';
 });
 </script>
 
