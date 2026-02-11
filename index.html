@@ -158,6 +158,11 @@ video{width:100%}
     </video>
   </div>
 
+  <!-- ✅ ADDED PART -->
+  <p id="afterVideo" style="display:none;font-size:1.6rem;color:#b3003b;margin-top:30px;">
+    I saved the most beautiful part of my heart just for you Jayvin… 💖
+  </p>
+
   <p id="hubbyCaption" onclick="playHubbyAudio()">💕 From Hubby — Click Me After the Video 💕</p>
   <div id="typingLetter"></div>
 </section>
@@ -198,9 +203,7 @@ function playHubbyAudio(){
     video.pause();
   }
 
-  const clickAudio = document.getElementById('hubbyClick');
-  clickAudio.currentTime = 0;
-  clickAudio.play().catch(()=>{});
+  document.getElementById('hubbyClick').play().catch(()=>{});
 
   const audio = document.getElementById('romanticAudio');
   audio.currentTime = 0;
@@ -223,7 +226,6 @@ function showPopup(){
   document.getElementById('lovePopup').style.display = 'block';
 }
 
-/* ✅ CHANGED PART: video does NOT resume */
 function closePopup(){
   document.getElementById('lovePopup').style.display = 'none';
 }
@@ -243,7 +245,7 @@ function typeLetter(){
   },50);
 }
 
-const hearts=['❤️','💖','💕','💘'];
+const hearts = ['❤️','Forever','My Wife','Always','💕'];
 setInterval(()=>{
   const h=document.createElement('div');
   h.className='heart';
@@ -253,6 +255,14 @@ setInterval(()=>{
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),7000);
 },400);
+</script>
+
+<!-- ✅ ADDED SCRIPT -->
+<script>
+const loveVideo = document.getElementById('loveVideo');
+loveVideo.addEventListener('ended', () => {
+  document.getElementById('afterVideo').style.display = 'block';
+});
 </script>
 
 </body>
